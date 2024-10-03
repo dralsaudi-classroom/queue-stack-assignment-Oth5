@@ -2,8 +2,23 @@ package com.example.project;
 
 public class QueueStackTester {
     public static <T> void split(Queue<T> q, Queue<T> oq, Queue<T> eq)
-    {
-        throw new UnsupportedOperationException("Not supported yet.");
+    {recSplit (q , oq , eq , q . length () , 1) ;
+}
+    private static<T> void recSplit( Queue<T> q , Queue<T> oq , Queue<T>
+eq , int count , int pos ) {
+if ( pos > count )
+return;
+T element = q.serve () ;
+q.enqueue( element ) ;
+if( pos % 2 == 1) {
+if (!oq.full () )
+oq.enqueue( element ) ;
+}
+else {
+if(!eq.full())
+eq.enqueue(element);
+}
+recSplit(q , oq , eq , count , pos + 1) ;
         // Write the recursive static method split that splits a queue of n elements into two
         // queues. The elements with odd orders (i.e. 1st, 3rd, 5th ...) should be put in the
         // first queue and elements with even orders (i.e. 2nd, 4th, 6th ...) should be put in
