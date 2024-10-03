@@ -28,15 +28,34 @@ recSplit(q , oq , eq , count , pos + 1) ;
     }
     public static <T> void remove(LinkedPQ<T> pq, int p)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
-        // Write a static method remove that removes every element in the priority queue
+PriorityQueue<T> tempPQ = new LinkedPQ <T>() ;
+int count= pq.length () ;
+for( int i = 0; i < count ; i ++) {
+PQElement<T> element = pq.serve () ;
+if( element.priority >= p )
+tempPQ.enqueue(element.data , element.priority ) ;
+}
+count=tempPQ.length();
+for( int i = 0; i < count ; i ++) {
+PQElement<T> element = tempPQ.serve () ;
+pq.enqueue ( element.data , element.priority ) ;
+}        // Write a static method remove that removes every element in the priority queue
         // having priority less than p.
         // Example. Given pq: [A, 10], [D, 8], [B, 5], [E, 3], [C, 2] remove(pq, 5) results in
         // pq: [A, 10], [D, 8], [B, 5].
     }
     public static <T> boolean search(Stack<T> st, T e)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (st.empty())
+return false ;
+T top = st.pop () ;
+boolean found ;
+if(top.equals(e))
+found = true ;
+else
+found = search (st,e) ;
+st.push( top ) ;
+return found ;
         // Write the recursive static method search that searches for an element e in a stack st
         // and returns true if it’s found or false otherwise. st should not change at the end of
         // the method. You are not allowed to use any auxiliary data structures.
